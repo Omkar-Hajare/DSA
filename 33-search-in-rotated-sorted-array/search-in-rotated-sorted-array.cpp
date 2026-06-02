@@ -11,6 +11,11 @@ public:
             if (nums[mid] == target) {
                 ans = mid;
             }
+            if(nums[start]==nums[mid]&&nums[end]==nums[mid]){
+                start++;
+                end--;
+                continue;
+            }
             // checking if left part is sorted
             if (nums[start] <= nums[mid]) {
                 if (target >= nums[start] && target <= nums[mid]) {
