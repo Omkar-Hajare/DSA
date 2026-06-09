@@ -14,19 +14,19 @@ public:
 
         int start = 1;
         int end = maxi;
-        int result;
+       // int result;
 
         while (start <= end) {
             int mid = (start + end) / 2;
 
             if (possible(nums, mid, threshold) == true) {
-                result = mid;
+               // result = mid;
                 end = mid - 1;
             } else {
                 start = mid + 1;
             }
         }
 
-        return result;
+        return start;
     }
 };
