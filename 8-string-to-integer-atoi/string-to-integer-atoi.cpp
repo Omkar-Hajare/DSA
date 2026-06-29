@@ -1,40 +1,33 @@
 class Solution {
 public:
+
+    //by recursive method
+    const int INT_MIN_VAL = -2147483648;
+    const int INT_MAX_VAL = 2147483647;
+
+    int helper(const string &s, int i, long long num, int sign) {
+    if (i >= s.size() || !isdigit(s[i]))
+        return (int)(sign * num);
+
+    num = num * 10 + (s[i] - '0');
+
+    if (sign * num <= INT_MIN_VAL) return INT_MIN_VAL;
+    if (sign * num >= INT_MAX_VAL) return INT_MAX_VAL;
+
+    return helper(s, i + 1, num, sign);
+}
+
     int myAtoi(string s) {
-        if (s.empty())
-            return 0;
+        int i=0;
+    while (i < s.size() && s[i] == ' ') i++;
 
-        int i = 0;
-        while (i < s.size() && s[i] == ' ') {
-            i++;
-        }
+    int sign = 1;
+    if (i < s.size() && (s[i] == '+' || s[i] == '-')) {
+        sign = (s[i] == '-') ? -1 : 1;
+        i++;
+    }
 
-        s = s.substr(i);
+    return helper(s, i, 0, sign);
         
-
-        int sign = 1;
-        long ans = 0;
-
-        if (s[0] == '-')
-            sign = -1;
-
-        int MAX = INT_MAX;
-        int MIN = INT_MIN;
-        i = (s[0] == '-' || s[0] == '+') ? 1 : 0;
-
-        while (i < s.size()) {
-            if (s[0] == ' ' || !isdigit(s[i]))
-                break;
-            ;
-            ans = ans * 10 + s[i] - '0';
-            if (sign == -1 && -1 * ans < MIN)
-                return MIN;
-            if (sign == 1 && ans > MAX)
-                return MAX;
-
-            i++;
-        }
-
-        return ans * sign;
     }
 };
