@@ -11,17 +11,14 @@ public:
             if (nums[mid] == target) {
                 ans = mid;
             }
-           
-            // checking if left part is sorted
+
             if (nums[start] <= nums[mid]) {
                 if (target >= nums[start] && target <= nums[mid]) {
                     end = mid - 1;
                 } else {
                     start = mid + 1;
                 }
-            }
-            // right part is sorted
-            else {
+            } else {
                 if (target <= nums[end] && target >= nums[mid]) {
                     start = mid + 1;
                 } else {
